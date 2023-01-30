@@ -1,6 +1,7 @@
 import './Board.css'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import Card from '../Card/Card'
+import Editable from '../Editable/Editable'
 
 const Board = () => {
   return (
@@ -14,6 +15,12 @@ const Board = () => {
       </div>
       <div className='board_cards'>
         <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Editable />
       </div>
     </div>
   )

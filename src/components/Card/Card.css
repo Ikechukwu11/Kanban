@@ -1,5 +1,5 @@
 .card {
-  padding: 10;
+  padding: 10px;
   border-radius: 5px;
   background-color: #fff;
   display: flex;
@@ -21,9 +21,31 @@
 
 .card_top svg {
   opacity: 0;
-  transform: 200ms;
+  transition: ease-in-out 0.25s;
 }
 
 .card_top svg:hover {
   opacity: 1;
+}
+
+.card_title {
+  font-weight: bold;
+}
+
+.card_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card_footer p {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card_footer svg {
+  height: 14px;
+  width: 14px;
 }

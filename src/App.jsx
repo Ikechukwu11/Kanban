@@ -13,7 +13,6 @@ function App() {
           <Board />
           <Board />
           <Board />
-          <Board />
         </div>
       </div>
     </div>
