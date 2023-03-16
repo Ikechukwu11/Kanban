@@ -37,6 +37,7 @@
 }
 .board_top_title span {
   color: gray;
+  margin-left: 10px;
 }
 .board_cards {
   display: flex;

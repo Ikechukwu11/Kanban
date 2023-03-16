@@ -17,6 +17,8 @@
   flex: 1;
   display: flex;
   gap: 10px;
+  text-transform: capitalize;
+  text-align: center;
 }
 
 .card_top svg {

@@ -4,13 +4,21 @@ import { AiOutlineCheckSquare } from 'react-icons/ai'
 import { FiMoreHorizontal, FiClock } from 'react-icons/fi'
 import Chip from '../Chip/Chip'
 import Dropdown from '../Dropdown/Dropdown'
-const Card = () => {
+const Card = (props) => {
   const [showDropdown, setShowDropdown] = useState(false)
   return (
     <div className='card'>
       <div className='card_top'>
         <div className='card_top_labels'>
-          <Chip text='Frontend' closed textColor='#fff' color='green' />
+          {props.card?.labels?.map((item, index) => (
+            <Chip
+              key={index}
+              text={item.text}
+              closed
+              textColor='#fff'
+              color={item.color}
+            />
+          ))}
         </div>
         <div className='card_top_more' onClick={() => setShowDropdown(true)}>
           <FiMoreHorizontal />
@@ -24,12 +32,15 @@ const Card = () => {
           )}
         </div>
       </div>
-      <div className='card_title'>Card Data</div>
+      <div className='card_title'>{props.card?.title}</div>
       <div className='card_footer'>
-        <p>
-          <FiClock />
-          30 Jan,2023 12:44 pm
-        </p>
+        {props.card?.date && (
+          <p>
+            <FiClock />
+            {props.card?.date}
+          </p>
+        )}
+
         <p>
           <AiOutlineCheckSquare />
           1/4
