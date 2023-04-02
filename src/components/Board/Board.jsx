@@ -21,7 +21,6 @@ const Board = (props) => {
             <Dropdown onClose={() => setShowDropdown(false)}>
               <div className='board_dropdown'>
                 <p onClick={() => props.removeBoard(props.board?.id)}>
-                  {' '}
                   Delete Board
                 </p>
               </div>
@@ -29,11 +28,22 @@ const Board = (props) => {
           )}
         </div>
       </div>
-      <div className='board_cards'>
+      <div className='board_cards '>
         {props.board?.cards?.map((item) => (
-          <Card key={item.id} card={item} />
+          <Card
+            key={item.id}
+            card={item}
+            removeCard={props.removeCard}
+            boardId={props.board?.id}
+            handleDragEnter={props.handleDragEnter}
+            handleDragEnd={props.handleDragEnd}
+          />
         ))}
-        <Editable />
+        <Editable
+          text='Add Card'
+          placeholder='Enter card title'
+          onSubmit={(value) => props.addCard(value, props.board?.id)}
+        />
       </div>
     </div>
   )

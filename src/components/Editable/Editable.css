@@ -1,5 +1,6 @@
 .editable {
   width: 100%;
+  max-width: 290px;
 }
 
 .editable_toggle {

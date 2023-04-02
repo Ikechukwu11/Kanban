@@ -7,7 +7,12 @@ import Dropdown from '../Dropdown/Dropdown'
 const Card = (props) => {
   const [showDropdown, setShowDropdown] = useState(false)
   return (
-    <div className='card'>
+    <div
+      className='card'
+      draggable
+      onDragEnter={() => props.handleDragEnter(props.card?.id, props.boardId)}
+      onDragEnd={() => props.handleDragEnd(props.card?.id, props.boardId)}
+    >
       <div className='card_top'>
         <div className='card_top_labels'>
           {props.card?.labels?.map((item, index) => (
@@ -26,7 +31,14 @@ const Card = (props) => {
           {showDropdown && (
             <Dropdown onClose={() => setShowDropdown(false)}>
               <div className='card_dropdown'>
-                <p> Delete Card</p>
+                <p
+                  onClick={() =>
+                    props.removeCard(props.card?.id, props.boardId)
+                  }
+                >
+                  {' '}
+                  Delete Card
+                </p>
               </div>
             </Dropdown>
           )}
