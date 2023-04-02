@@ -20,7 +20,10 @@ const Board = (props) => {
           {showDropdown && (
             <Dropdown onClose={() => setShowDropdown(false)}>
               <div className='board_dropdown'>
-                <p> Delete Board</p>
+                <p onClick={() => props.removeBoard(props.board?.id)}>
+                  {' '}
+                  Delete Board
+                </p>
               </div>
             </Dropdown>
           )}
