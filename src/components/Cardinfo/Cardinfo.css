@@ -72,8 +72,8 @@
   background-color: #1479ec;
 }
 
-.cardinfo_box_progress-ative {
-  background-color: limegreen;
+.cardinfo_box_progress-active {
+  background-color: limegreen !important;
 }
 
 .cardinfo_box_list {

@@ -23,17 +23,74 @@ const Cardinfo = (props) => {
     '#8da377',
     '#9975bd',
   ]
+  const randomColors = colors[Math.floor(Math.random() * colors.length)]
+
   const [activeColor, setActiveColor] = useState('#cf61a1')
   const { title, labels, desc, date, tasks } = props.card
 
   const [values, setValues] = useState({ ...props.card })
+
+  //console.log(values)
   const tasksPercent = () => {
     if (values.tasks?.length === 0) return '0'
     const completed = values.tasks?.filter((item) => item.completed)?.length
     return (completed / values.tasks?.length) * 100
   }
 
+  const addLabel = (value, color) => {
+    const index = values.labels?.findIndex((item) => item.text === value)
+    if (index > -1) return
+    const label = {
+      text: value,
+      color,
+    }
+    setValues({ ...values, labels: [...values.labels, label] })
+    setActiveColor('')
+  }
+  const removeLabel = (text) => {
+    const tempLabels = values.labels?.filter((item) => item.text !== text)
+    //console.log(index)
+    //if (index < 0) return
+
+    setValues({ ...values, labels: tempLabels })
+  }
+
+  const addTask = (value) => {
+    const task = {
+      id: Date.now() + Math.random(),
+      text: value,
+      completed: false,
+    }
+    setValues({ ...values, tasks: [...values.tasks, task] })
+  }
+
+  const removeTask = (id) => {
+    const index = values?.tasks?.findIndex((item) => item.id === id)
+    if (index < 0) return
+
+    const tempTasks = values.tasks?.filter((item) => item.id !== id)
+    setValues({ ...values, tasks: tempTasks })
+  }
+
+  const updateTask = (id, completed) => {
+    const index = values?.tasks?.findIndex((item) => item.id === id)
+    if (index < 0) return
+
+    const tempTasks = [...values.tasks]
+    tempTasks[index].completed = completed
+
+    setValues({ ...values, tasks: tempTasks })
+  }
+
   useEffect(() => {
+    if (
+      values.title === props.cards?.title &&
+      values.date === props.cards?.date &&
+      values.desc === props.cards?.desc &&
+      values.labels?.length === props.cards?.labels?.length &&
+      values.tasks?.length === props.cards?.tasks?.length
+    )
+      return
     props.updateCard(props.card.id, props.boardId, values)
   }, [values])
 
@@ -91,7 +148,9 @@ const Cardinfo = (props) => {
             <div className='cardinfo_box_labels'>
               {values.labels?.map((item, index) => (
                 <Chip
-                  onClose={() => console.log('close chip')}
+                  onClose={() => {
+                    removeLabel(item.text)
+                  }}
                   key={item.text + index}
                   color={item.color}
                   text={item.text}
@@ -115,6 +174,9 @@ const Cardinfo = (props) => {
                 text={'Add Label'}
                 placeholder='Enter label'
                 buttonText='Add Label'
+                onSubmit={(value) =>
+                  addLabel(value, activeColor ? activeColor : randomColors)
+                }
               />
             </div>
 
@@ -124,19 +186,29 @@ const Cardinfo = (props) => {
 
             <div className='cardinfo_box_progress-bar'>
               <div
-                className='cardinfo_box_progress'
+                className={`cardinfo_box_progress ${
+                  tasksPercent() === 100 ? 'cardinfo_box_progress-active' : ''
+                }`}
                 style={{ width: tasksPercent() + '%' }}
               ></div>
             </div>
 
             <div className='cardinfo_box_list'>
-              {values.tasks?.map((item) => {
-                ;<div key={item.id} className='cardinfo_task'>
-                  <input type='checkbox' defaultValue={item.completed} />
+              {values.tasks?.map((item) => (
+                <div key={item.id} className='cardinfo_task'>
+                  <input
+                    type='checkbox'
+                    defaultChecked={item.completed}
+                    onChange={(e) => updateTask(item.id, e.target.checked)}
+                  />
                   <p>{item.text}</p>
-                  <FiTrash2 />
+                  <FiTrash2
+                    onClick={(e) => {
+                      removeTask(item.id)
+                    }}
+                  />
                 </div>
-              })}
+              ))}
             </div>
 
             <div className='cardinfo_box_body'>
@@ -144,6 +216,7 @@ const Cardinfo = (props) => {
                 text={'Enter task name'}
                 placeholder='Enter task name'
                 buttonText='Add Task'
+                onSubmit={(value) => addTask(value)}
               />
             </div>
           </div>

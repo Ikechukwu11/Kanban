@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import './App.css'
 import Board from './components/Board/Board'
 import { useState } from 'react'
@@ -5,55 +6,57 @@ import Editable from './components/Editable/Editable'
 //import boarddata from '../data/boarddata'
 
 function App() {
-  const [boards, setBoards] = useState([
-    {
-      id: Date.now() + Math.random() * 2,
-      title: 'To Do',
-      cards: [
-        {
-          id: Date.now() + Math.random(),
-          title: 'Card 1',
-          tasks: [],
-          labels: [
-            {
-              text: 'frontend',
-              color: 'blue',
-            },
-          ],
-          desc: 'This is Card 1',
-          date: '',
-        },
+  const [boards, setBoards] = useState(
+    JSON.parse(localStorage.getItem('kanban')) || [
+      {
+        id: Date.now() + Math.random() * 2,
+        title: 'To Do',
+        cards: [
+          {
+            id: Date.now() + Math.random(),
+            title: 'Card 1',
+            tasks: [],
+            labels: [
+              {
+                text: 'frontend',
+                color: 'blue',
+              },
+            ],
+            desc: 'This is Card 1',
+            date: '',
+          },
 
-        {
-          id: Date.now() + Math.random(),
-          title: 'Card 2',
-          tasks: [],
-          labels: [
-            {
-              text: 'backend',
-              color: 'black',
-            },
-          ],
-          desc: 'This is Card 2',
-          date: '',
-        },
+          {
+            id: Date.now() + Math.random(),
+            title: 'Card 2',
+            tasks: [],
+            labels: [
+              {
+                text: 'backend',
+                color: 'black',
+              },
+            ],
+            desc: 'This is Card 2',
+            date: '',
+          },
 
-        {
-          id: Date.now() + Math.random(),
-          title: 'Card 3',
-          tasks: [],
-          labels: [
-            {
-              text: 'devops',
-              color: 'teal',
-            },
-          ],
-          desc: 'This is Card 3',
-          date: '',
-        },
-      ],
-    },
-  ])
+          {
+            id: Date.now() + Math.random(),
+            title: 'Card 3',
+            tasks: [],
+            labels: [
+              {
+                text: 'devops',
+                color: 'teal',
+              },
+            ],
+            desc: 'This is Card 3',
+            date: '',
+          },
+        ],
+      },
+    ]
+  )
 
   const [dragTarget, setDragTarget] = useState({
     cid: '',
@@ -146,6 +149,10 @@ function App() {
     tempBoards[bIndex].cards[cIndex] = card
     setBoards(tempBoards)
   }
+
+  useEffect(() => {
+    localStorage.setItem('kanban', JSON.stringify(boards))
+  }, [boards])
 
   return (
     <div className='app'>

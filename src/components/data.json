@@ -1,0 +1,96 @@
+[
+  {
+    "id": 1680940616780.8572,
+    "title": "To Do",
+    "cards": [
+      {
+        "id": 1680940625699.5513,
+        "title": "Dev Ops",
+        "labels": [
+          {
+            "text": "Devops",
+            "color": "#240959"
+          }
+        ],
+        "tasks": [
+          {
+            "id": 1680940670427.5327,
+            "text": "Change the htaccess",
+            "completed": true
+          },
+          {
+            "id": 1680940715129.016,
+            "text": "Upgrade server cpu",
+            "completed": false
+          }
+        ],
+        "desc": "",
+        "date": "2023-04-08"
+      }
+    ]
+  },
+  {
+    "id": 1680940633450.5698,
+    "title": "Progress",
+    "cards": [
+      {
+        "id": 1680940642369.4343,
+        "title": "Frontend",
+        "labels": [
+          {
+            "text": "HTML",
+            "color": "#4fcc25"
+          }
+        ],
+        "tasks": [
+          {
+            "id": 1680940861833.7449,
+            "text": "Add the meta values for SEO",
+            "completed": true
+          },
+          {
+            "id": 1680940929844.7217,
+            "text": "Add favicons",
+            "completed": false
+          },
+          {
+            "id": 1680940947410.4004,
+            "text": "Source for fonts from google font",
+            "completed": false
+          }
+        ],
+        "desc": "Frontend Tasks B",
+        "date": ""
+      },
+      {
+        "id": 1680940980210.0625,
+        "title": "Backend",
+        "labels": [
+          {
+            "text": "PHP",
+            "color": "#8da377"
+          }
+        ],
+        "tasks": [
+          {
+            "id": 1680941022636.0054,
+            "text": "Set up project structure using OOP",
+            "completed": false
+          },
+          {
+            "id": 1680941040363.9224,
+            "text": "Desing DB schema",
+            "completed": true
+          }
+        ],
+        "desc": "",
+        "date": "2023-04-07"
+      }
+    ]
+  },
+  {
+    "id": 1680940966737.003,
+    "title": "Review",
+    "cards": []
+  }
+]

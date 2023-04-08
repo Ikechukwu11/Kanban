@@ -11,9 +11,7 @@ const Chip = (props) => {
       {props.text}
       {props.closed && (
         <AiOutlineClose
-          onClick={() => {
-            props.onclose ? props.onClose() : ''
-          }}
+          onClick={() => (props.onClose ? props.onClose() : '')}
         />
       )}
     </div>

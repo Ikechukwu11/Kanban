@@ -9,6 +9,7 @@ import Cardinfo from '../Cardinfo/Cardinfo'
 const Card = (props) => {
   const [showDropdown, setShowDropdown] = useState(false)
   const [showModal, setShowModal] = useState(false)
+
   return (
     <>
       {showModal && (
@@ -32,7 +33,7 @@ const Card = (props) => {
               <Chip
                 key={index}
                 text={item.text}
-                closed
+                close
                 textColor='#fff'
                 color={item.color}
               />
@@ -66,10 +67,13 @@ const Card = (props) => {
             </p>
           )}
 
-          <p>
-            <AiOutlineCheckSquare />
-            1/4
-          </p>
+          {props.card?.tasks.length > 0 && (
+            <p>
+              <AiOutlineCheckSquare />
+              {props.card?.tasks?.filter((item) => item.completed).length}/
+              {props.card?.tasks?.length}
+            </p>
+          )}
         </div>
       </div>
     </>
