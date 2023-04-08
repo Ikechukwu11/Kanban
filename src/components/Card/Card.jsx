@@ -11,7 +11,14 @@ const Card = (props) => {
   const [showModal, setShowModal] = useState(false)
   return (
     <>
-      {showModal && <Cardinfo onClose={() => setShowModal(false)} />}
+      {showModal && (
+        <Cardinfo
+          card={props.card}
+          updateCard={props.updateCard}
+          boardId={props.boardId}
+          onClose={() => setShowModal(false)}
+        />
+      )}
       <div
         className='card'
         draggable

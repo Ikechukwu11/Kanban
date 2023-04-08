@@ -14,5 +14,5 @@
   background-color: #fff;
   border-radius: 3px;
   max-height: 95vh;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
